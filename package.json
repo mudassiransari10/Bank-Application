@@ -1,0 +1,23 @@
+{
+  "name": "banking-app",
+  "version": "1.0.0",
+  "description": "This is a banking app using nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mudassiransari10/Bank-Application.git"
+  },
+  "author": "mudassir ansari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mudassiransari10/Bank-Application/issues"
+  },
+  "homepage": "https://github.com/mudassiransari10/Bank-Application#readme",
+  "dependencies": {
+    "node-emoji": "^2.1.3",
+    "yarn": "^1.22.21"
+  }
+}
