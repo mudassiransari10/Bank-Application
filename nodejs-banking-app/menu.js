@@ -1,3 +1,5 @@
+
+
 const readline = require('readline')
 const { createNewAccount, deposit, withdraw, transfer, balance } = require('./db')
 const rl = readline.createInterface({
