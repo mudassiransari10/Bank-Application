@@ -2,7 +2,7 @@
   "name": "banking-app",
   "version": "1.0.0",
   "description": "This is a banking app using nodejs",
-  "main": "app.js",
+  "main": "web.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
