@@ -7,7 +7,7 @@ const cors =require('cors')
 const app = express()
 app.use(cors())
 
-const port = 3001
+const PORT = process.env.PORT || 3001;
 const { createNewAccount, deposit, withdraw, transfer, balance } = require('./db')
 
 app.post('/create', express.json(), (req, res) => {
