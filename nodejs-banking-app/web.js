@@ -49,6 +49,6 @@ app.get('/balance/:acId', (req, res) => {
 
 })
 
-app.listen(port, () => {
-    console.log(`Banking App is listening on Port ${port}`)
+app.listen(PORT, () => {
+    console.log(`Banking App is listening on Port ${PORT}`)
 })
