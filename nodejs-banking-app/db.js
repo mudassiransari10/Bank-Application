@@ -20,7 +20,7 @@ client.connect(err => {
 
 
 const createNewAccount = ({acId, acName, balance}, onCreate = undefined) => {
-    client.query(`insert into account values ($1, $2, $3)`, [acId, acName, balance], (err, res)=> {
+    client.query(`insert into account values ($1, $2, $3)`, [acId, acName, parseFloat(balance)], (err, res)=> {
         if(err) console.log(`\n ❌ Problem in Creating a Customer`)
         else {
             console.log(`\n ✅ New Customer Created Successfully`)
@@ -35,7 +35,7 @@ const withdraw = ({acId, amount}, onWithdraw = undefined) => {
             console.log(`\n ❌ Sorry, There may be some problem in Withdrawing`)
         } else {
             const balance = parseFloat(res.rows[0].balance)
-            const updatedBalance = balance - amount
+            const updatedBalance = balance - parseFloat(amount)
 
             client.query(`update account set balance = $1 where ac_id = $2`, [updatedBalance, acId], (err, res) => {
                 if(err) {
@@ -55,7 +55,7 @@ const deposit = ({acId, amount}, onDeposit = undefined) => {
             console.log(`\n ❌ Sorry, There may be some problem in Depositing`)
         } else {
             const balance = parseFloat(res.rows[0].balance)
-            const updatedBalance = balance + amount
+            const updatedBalance = balance + parseFloat(amount)
 
             client.query(`update account set balance = $1 where ac_id = $2`, [updatedBalance, acId], (err, res) => {
                 if(err) {
@@ -70,8 +70,8 @@ const deposit = ({acId, amount}, onDeposit = undefined) => {
 }
 
 const transfer = ({srcId, destId, amount}, onTransfer = undefined) => {
-    withdraw({ acId: srcId, amount}, msgWd => {
-        deposit({acId: destId, amount}, msgdP => {
+    withdraw({ acId: srcId, amount }, msgWd => {
+        deposit({acId: destId, amount }, msgDp => {
             if(onTransfer) onTransfer(`✅ Amount ₹${amount} Transferred Successfully`)
         })
     })
@@ -79,11 +79,12 @@ const transfer = ({srcId, destId, amount}, onTransfer = undefined) => {
     
 }
 
-const balance = ({acId, onBalance = undefined}) => {
+const balance = (acId, onBalance = undefined) => {
     client.query(`select balance from account where ac_id = $1`, [acId], (err, res) => {
         if(err) {
             console.log(`\n ❌ There may be some problem in fetching`)
         } else {
+            console.log(res.rows[0])
             const balance = parseFloat(res.rows[0].balance)
             console.log(`\n 💰 Your account balance is ₹${balance}`)
             if(onBalance) onBalance(balance)

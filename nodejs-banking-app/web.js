@@ -1,11 +1,14 @@
 // this page will help you with web application
 
+const { response } = require('express')
 const express = require('express')
-const { createNewAccount, deposit, withdraw, transfer, balance } = require('./db')
 
+const cors =require('cors')
 const app = express()
+app.use(cors())
 
-const port = 3000
+const port = 3001
+const { createNewAccount, deposit, withdraw, transfer, balance } = require('./db')
 
 app.post('/create', express.json(), (req, res) => {
    
@@ -16,21 +19,21 @@ app.post('/create', express.json(), (req, res) => {
 
 app.put('/transfer', express.json(), (req, res) => {
     
-    transfer(req.body, msg => {
+    transfer(req.body, (msg) => {
         res.json({ 'sts': 'success', msg})
     })
 })
 
 app.put('/withdraw', express.json(), (req, res) => {
 
-    withdraw(req.body, msg => {
+    withdraw(req.body, (msg) => {
         res.json({ 'sts': 'success', msg})
     } )
 })
 
 app.put('/deposit', express.json(), (req, res) => {
 
-    deposit(req.body, msg => {
+    deposit(req.body, (msg) => {
         res.json({ 'sts': 'success', msg})
     } )
 })

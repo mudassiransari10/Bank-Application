@@ -1,0 +1,20 @@
+.withdrawContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.withdrawContent > form {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.withdrawContent > form > input {
+    width: 100%;
+    font-size: 1.5em;
+    margin: 10px;
+
+}
